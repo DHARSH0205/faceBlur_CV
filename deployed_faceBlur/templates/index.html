@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Blurrer</title>
+    <style>
+        /* Reset and basic styles */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Card container */
+        .card {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            background-color: #ff7f50;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5722;
+        }
+
+        .download-btn {
+            margin-top: 20px;
+            display: inline-block;
+            background-color: #32cd32;
+        }
+
+        .download-btn:hover {
+            background-color: #28a428;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Face Blurrer</h1>
+        <p>Upload your video and instantly blur faces</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="video" accept="video/*" required><br><br>
+        
+            <label for="kernel">Blur Amount (Kernel Size, odd number):</label><br>
+            <input type="number" id="kernel" name="kernel" min="1" step="2" value="35" required><br><br>
+        
+            <label for="confidence">Detection Confidence (0 to 1):</label><br>
+            <input type="number" id="confidence" name="confidence" min="0" max="1" step="0.05" value="0.7" required><br><br>
+        
+            <button type="submit">Upload & Blur</button>
+        </form>
+
+        {% if download_link %}
+            <a href="{{ download_link }}" class="download-btn">
+                <button>Download Blurred Video</button>
+            </a>
+        {% endif %}
+    </div>
+</body>
+</html>
