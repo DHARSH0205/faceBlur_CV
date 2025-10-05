@@ -3,6 +3,8 @@ import os
 from faceBlur import faceBlurrer
 
 app = Flask(__name__)
+os.makedirs("uploads", exist_ok=True)
+os.makedirs("outputs", exist_ok=True)
 
 @app.route('/' , methods=['GET','POST'])
 def index():
@@ -28,4 +30,5 @@ def download_file(filename):
     return send_from_directory('outputs', filename, as_attachment=True)
 
 if __name__ == "__main__":
+
     app.run(debug=True)
